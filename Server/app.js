@@ -2,7 +2,7 @@ import express from 'express';
 import router  from './userRoute.js'; 
 
 
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const app=express();
 app.use(express.json());
