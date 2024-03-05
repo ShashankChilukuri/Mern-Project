@@ -1,5 +1,5 @@
 import User from './User.js';
-
+import Profile from './Profile.js';
 export const getAll = async (req, res, next) => {
     try {
         const users = await User.find();
@@ -15,25 +15,31 @@ export const getAll = async (req, res, next) => {
 export const signup = async (req, res) => {
     const { username, email, password } = req.body;
     try {
-        console.log("Received signup request with data:", req.body); // Log request body
-
-        // Check if email already exists
+        console.log("Received signup request with data:", req.body); 
         let existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: "User already exists with this email" });
         }
 
-        // Create a new user
         const newUser = new User({
             username,
             email,
             password
         });
+        await newUser.save()
+        .then((user) => {
+            console.log('User created:', user);
+          })
+          .catch((error) => {
+            console.error('Error creating user:', error);
+          });
 
-        // Save the user to the database
-        await newUser.save();
+          const newProfile = new Profile({
+            user: newUser._id,
+            });
+                await newProfile.save();
 
-        // Return success response
+
         return res.status(201).json({ message: "User created successfully", user: newUser });
     } catch (error) {
         console.error("Error occurred during signup:", error);
@@ -62,3 +68,4 @@ export const login = async (req, res) => {
         return res.status(500).json({ message: "Internal server error" });
     }
 };
+
