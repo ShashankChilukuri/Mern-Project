@@ -1,0 +1,76 @@
+.container {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #100f0f;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the login form container */
+.box {
+    flex: 1; /* Equal width for both boxes */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 10px; /* Adjust margin for space between boxes */
+}
+
+/* Rest of the styles... */
+
+
+.box + .box {
+    margin-top: 20px; /* Add margin between the boxes */
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    outline: none; /* Remove default focus outline */
+    border: 1px solid #ccc; /* Default border color */
+    transition: border-color 0.3s ease; /* Smooth transition on border color */
+}
+
+input:focus {
+    border-color: #4caf50; /* Highlight color on focus */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Adjust shadow as needed */
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Make the button full width */
+}
+
+p {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+p a {
+    color: #4caf50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
