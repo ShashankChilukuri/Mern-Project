@@ -16,6 +16,10 @@ const UserSchema = new mongoose.Schema({
         required:true,
         unique:true
     },
+    profile:{
+        type:Boolean,
+        default:false
+    },
 });
 
 const User = mongoose.model('User', UserSchema);

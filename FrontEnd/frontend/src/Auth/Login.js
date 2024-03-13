@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Login.css';
 import axios from 'axios';
+// import { CreateProfile } from '../Profile/CreateProfile';
 
 export const Login = () => {
     const [email, setEmail] = useState("");
@@ -14,6 +15,8 @@ export const Login = () => {
                 email: email,
                 password: password
             });
+            // if(response.data.profile!=true)
+            //     <CreateProfile username={response.username}/>
             const data = response.data;
             setMessage(data.message);
         } catch (error) {
