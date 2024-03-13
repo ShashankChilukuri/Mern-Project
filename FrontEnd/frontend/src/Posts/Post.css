@@ -1,0 +1,125 @@
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow-y: auto;
+    border: 3px solid #ccc;
+    margin-right: 500px;
+    margin-left: 500px;
+  }
+  
+  .container {
+    text-align: center;
+    width: 90%;
+    margin: 20px;
+    border: 2px solid;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .container img {
+    border: 1px solid;
+    margin-top: 40px;
+    width: 95%;
+    height: 100%;
+    max-width: 1000px;
+  }
+  
+  .container p {
+    margin: 10px 0;
+  }
+  
+  .container button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .container-comment {
+    position: relative;
+  }
+  
+  .container-comment::before {
+    content: "Comments";
+    position: absolute;
+    left: 10px; /* Adjust this value to move the comments to the left */
+    top: 0;
+    color: #777;
+    font-size: 14px;
+  }
+ 
+  .profile {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile h2 {
+    margin-bottom: 10px;
+  }
+  
+  .profile .info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .profile .info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .profile .info .text {
+    flex: 1;
+  }
+  
+  .profile .info .text p {
+    margin: 0;
+  }
+  
+  .profile .info .text .name {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .profile .info .text .username {
+    color: #777;
+  }
+  
+  .profile .info .text .dob {
+    color: #777;
+  }
+  
+  .profile .info .text .place {
+    color: #777;
+  }
+  
+  /* App.css */
+
+.app-container {
+  display: flex;
+}
+
+.post-container {
+  flex: 1; /* Take remaining space */
+}
+
+.profile-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}

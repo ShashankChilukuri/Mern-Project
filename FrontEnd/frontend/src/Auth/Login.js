@@ -15,8 +15,7 @@ export const Login = () => {
                 email: email,
                 password: password
             });
-            // if(response.data.profile!=true)
-            //     <CreateProfile username={response.username}/>
+            
             const data = response.data;
             setMessage(data.message);
         } catch (error) {

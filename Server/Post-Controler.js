@@ -1,6 +1,6 @@
 import Post from './Post.js';
 import User from './User.js'; 
-import Profile from './Profile.js';
+
 export const getAllPosts=async (req,res)=>{
      try{
      const posts=await Post.find();
@@ -13,37 +13,58 @@ export const getAllPosts=async (req,res)=>{
     }
 };
 
-    export const addpost = async (req, res) => {
-        const { user, image, caption, likes, dislikes, comments } = req.body;
-        try {
-            console.log("Received Data Of post", req.body);
-            let existingUser = await User.findOne({ username: user });
-            if (!existingUser) {
-                return res.status(400).json({ message: "No user exists with the provided username" });
-            } 
-            const newPost = new Post({
-                user: existingUser._id, 
-                image,
-                caption,
-                likes,
-                dislikes,
-                comments
-            });
+export const getByusername = async (req, res) => {
+    const { username } = req.params;
+    try {
+        const user = await User.findOne({ username });
 
-            await newPost.save();
-
-            await Profile.findOneAndUpdate(
-                { user: existingUser._id },
-                { $push: { posts: newPost._id } }
-            );
-
-            console.log('Post created:', newPost);
-            return res.status(201).json({ message: "Post created successfully", post: newPost });
-        } catch (error) {
-            console.error("Error occurred during posting:", error);
-            return res.status(500).json({ message: "Internal server error" });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
         }
-    };
+
+        const posts = await Post.find({ user: user._id });
+
+        return res.status(200).json({ message: "Posts found successfully", posts });
+    } catch (error) {
+        console.error("Error occurred during finding posts:", error);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+export const addpost = async (req, res) => {
+    const { user, image, caption, likes, dislikes, comments } = req.body;
+    try {
+        console.log("Received Data Of post", req.body);
+        let existingUser = await User.findOne({ username: user });
+        if (!existingUser) {
+            return res.status(400).json({ message: "No user exists with the provided username" });
+        } 
+
+        const newPost = new Post({
+            user: existingUser._id, 
+            postuser:existingUser.username,
+            image,
+            caption,
+            likes,
+            dislikes,
+            comments
+        });
+
+        await newPost.save();
+
+        await User.findByIdAndUpdate(
+            existingUser._id,
+            { $push: { posts: newPost._id } }
+        );
+
+        console.log('Post created:', newPost);
+        return res.status(201).json({ message: "Post created successfully", post: newPost });
+    } catch (error) {
+        console.error("Error occurred during posting:", error);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+};
+
 
     export const updatepost = async (req, res) => {
         const { caption, image } = req.body;
@@ -60,8 +81,8 @@ export const getAllPosts=async (req,res)=>{
                 return res.status(404).json({ message: "User not found" });
             }
     
-            await Profile.findOneAndUpdate(
-                { user: user._id, "posts": postId },
+            await User.findOneAndUpdate(
+                { username: user._id, "posts": postId },
                 { $set: { "posts.$": updatedPost } },
                 { new: true }
             );
@@ -89,11 +110,15 @@ export const getAllPosts=async (req,res)=>{
                 return res.status(404).json({ message: "User not found" });
             }
     
-            await Profile.findOneAndUpdate(
-                { user: user._id },
+            const updatedUser = await User.findOneAndUpdate(
+                { _id: user._id },
                 { $pull: { posts: postId } },
                 { new: true }
             );
+    
+            if (!updatedUser) {
+                return res.status(404).json({ message: "User not found" });
+            }
     
             return res.status(200).json({ message: "Post deleted successfully" });
         } catch (error) {
@@ -101,4 +126,5 @@ export const getAllPosts=async (req,res)=>{
             return res.status(500).json({ message: "Internal server error" });
         }
     };
+    
     

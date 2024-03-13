@@ -9,16 +9,43 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength: 10
+        minlength: 6
     },
     email:{
         type:String,
         required:true,
         unique:true
     },
-    profile:{
-        type:Boolean,
-        default:false
+    image: {
+        type: String 
+    },
+    dob: {
+        type: Date 
+    },
+    gender: {
+        type: String,
+        enum: ['male', 'female', 'other'] 
+    },
+    followers: {
+        type: [String],
+        default: [] 
+    },
+    followerscount: {
+        type:Number,
+        default: 0 
+    },
+    following: {
+        type: [String], 
+        default: []
+    },
+    followingcount: {
+        type:Number,
+        default: 0 
+    },
+    posts: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Post',
+        default: []
     },
 });
 
