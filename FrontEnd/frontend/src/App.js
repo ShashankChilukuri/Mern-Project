@@ -1,14 +1,20 @@
-import './App.css';
-//  import Page1 from './Auth/Page1';
-import AllPosts  from './Posts/AllPosts';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Removed "BrowserRouter as Router"
+import {Login} from './Authentication/Login';
+import {Signup} from './Authentication/Signup'; 
+import AllPosts from './Posts/AllPosts';
+
 function App() {
   return (
-    <div> 
-    <h1>App.js</h1>
-    {/* <Page1/> */}  
-    <AllPosts/>
-
-    </div>
+    <BrowserRouter>
+      <div> 
+        <Routes>
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/" element={<Signup />} />
+          <Route exact path="/posts" element={<AllPosts />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

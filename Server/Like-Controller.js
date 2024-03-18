@@ -13,7 +13,7 @@ export const incrementlike = async (req, res) => {
             post.liked=true;
         }
     await post.save();
-    location.reload();
+    
     res.status(200).json({ message: "Like count incremented successfully" });
   } catch (error) {
     console.error('Error incrementing like:', error);
@@ -34,7 +34,7 @@ export const decdislike = async (req, res) => {
             post.liked=true;
         }
       await post.save();
-      location.reload();  
+        
       res.status(200).json({ message: "DisLike count incremented successfully" });
     } catch (error) {
       console.error('Error incrementing like:', error);
@@ -57,7 +57,7 @@ export const declike = async (req, res) => {
             post.liked=false;
         }
     await post.save();
-    location.reload();
+
     res.status(200).json({ message: "Like count decremented successfully" });
   } catch (error) {
     console.error('Error incrementing like:', error);
@@ -78,7 +78,7 @@ export const incrementdislike = async (req, res) => {
         post.disliked=false;
       }
       await post.save();
-      location.reload();
+  
       res.status(200).json({ message: "DisLike count decremented successfully" });
     } catch (error) {
       console.error('Error incrementing like:', error);
