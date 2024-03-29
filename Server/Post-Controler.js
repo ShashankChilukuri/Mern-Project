@@ -30,24 +30,20 @@ export const getByusername = async (req, res) => {
         return res.status(500).json({ message: "Internal server error" });
     }
 };
-
 export const addpost = async (req, res) => {
-    const { user, image, caption, likes, dislikes, comments } = req.body;
+    const { username, image, caption } = req.body;
     try {
         console.log("Received Data Of post", req.body);
-        let existingUser = await User.findOne({ username: user });
+        let existingUser = await User.findOne({ username });
         if (!existingUser) {
             return res.status(400).json({ message: "No user exists with the provided username" });
         } 
 
         const newPost = new Post({
             user: existingUser._id, 
-            postuser:existingUser.username,
+            postuser: existingUser.username, // Use postuser instead of name
             image,
-            caption,
-            likes,
-            dislikes,
-            comments
+            caption
         });
 
         await newPost.save();

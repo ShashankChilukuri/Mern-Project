@@ -1,75 +1,59 @@
+// Post.js
 import React, { useState } from 'react';
 import Comment from './Comment';
 import axios from 'axios';
 import './Post.css';
 
-export default function Post({ post }) {
+const Post = ({ post }) => {
   const [like, setLike] = useState(post.likes);
   const [dislike, setDislike] = useState(post.dislikes);
   const [showComment, setShowComment] = useState(false);
-  const [likeFlag, setLikeFlag] = useState(0);
-  const [dislikeFlag, setDislikeFlag] = useState(0);
+ 
+  const [error, setError] = useState(null);
 
-  const incrementLike = async () => {
+  const handleLike = async () => {
+   
+    setError(null);
     try {
       const response = await axios.put(`http://localhost:3001/posts/incrementlike/${post._id}`);
-      const updatedLikeCount = response.data.likes;
-      setLike(updatedLikeCount);
-      setLikeFlag(1);
+      setLike(response.data.likes);
     } catch (error) {
-      console.error('Error incrementing like:', error);
-    }
+      setError('Error liking post. Please try again later.');
+    } 
   };
 
-  const decrementLike = async () => {
-    try {
-      const response = await axios.put(`http://localhost:3001/posts/declike/${post._id}`);
-      const updatedLikeCount = response.data.likes;
-      setLike(updatedLikeCount);
-      setLikeFlag(0);
-    } catch (error) {
-      console.error('Error decrementing like:', error);
-    }
-  };
-
-  const incrementDislike = async () => {
+  const handleDislike = async () => {
+    
+    setError(null);
     try {
       const response = await axios.put(`http://localhost:3001/posts/incrementdislike/${post._id}`);
-      const updatedDislikeCount = response.data.dislikes;
-      setDislike(updatedDislikeCount);
-      setDislikeFlag(1);
+      setDislike(response.data.dislikes);
     } catch (error) {
-      console.error('Error incrementing dislike:', error);
-    }
+      setError('Error disliking post. Please try again later.');
+    } 
   };
 
-  const decrementDislike = async () => {
-    try {
-      const response = await axios.put(`http://localhost:3001/posts/decdislike/${post._id}`);
-      const updatedDislikeCount = response.data.dislikes;
-      setDislike(updatedDislikeCount);
-      setDislikeFlag(0);
-    } catch (error) {
-      console.error('Error decrementing dislike:', error);
-    }
-  };
-
-  const handleComment = () => {
+  const toggleComment = () => {
     setShowComment(!showComment);
   };
 
   return (
-    <div className="center-container">
-      <div className="container">
-        <p>{post.postuser}</p>
-        <img src={post.image} alt={post.caption} />
-        <h1>
-          <span onClick={likeFlag === 0 ? incrementLike : decrementLike}>❤️ {like}</span>
-          <span onClick={dislikeFlag === 0 ? incrementDislike : decrementDislike}>👎 {dislike}</span>
-          <button onClick={handleComment}>Comments</button>
-        </h1>
-        {showComment && <Comment postId={post._id} />}
+    <div className="post-container">
+      <div className="center-container">
+        <p className="username">{post.postuser}</p>
       </div>
+      <div className="image-container">
+        <img src={post.image} alt={post.caption} />
+      </div>
+      <div className="interaction">
+        <span onClick={handleLike} aria-label="Like">{ '❤️'} {like}</span>
+        <span onClick={handleDislike} aria-label="Dislike">{ '👎'} {dislike}</span>
+        <button onClick={toggleComment}>Comments</button>
+      </div>
+      {error && <p className="error-message">{error}</p>}
+      {showComment && <Comment postId={post._id} />}
     </div>
   );
-}
+};
+
+export default Post;

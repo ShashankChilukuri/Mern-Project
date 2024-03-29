@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Post from './Post';
+import './AllPost.css';
 
- function AllPosts() {
+function AllPosts() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -19,7 +20,7 @@ import Post from './Post';
   }, []);
 
   return (
-    <div>
+    <div className="posts-container">
       {posts.map(post => (
         <Post key={post._id} post={post} />
       ))}

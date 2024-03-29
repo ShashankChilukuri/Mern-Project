@@ -13,7 +13,7 @@ export const getAll = async (req, res, next) => {
 };
 
 export const signup = async (req, res) => {
-    const { username, email, password, image, dob, gender } = req.body;
+    const { username, email, password,  dob, gender } = req.body;
     try {
         console.log("Received signup request with data:", req.body); 
         let existingUser = await User.findOne({ username: username });
@@ -30,7 +30,6 @@ export const signup = async (req, res) => {
             username,
             email,
             password,
-            image,
             dob,
             gender
         });
@@ -52,7 +51,7 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
     const { email, password } = req.body;
     try {
-        const existingUser = await User.findOne({ email:email });
+        const existingUser = await User.findOne({ email: email });
         if (!existingUser) {
             return res.status(404).json({ message: "User not found. Please sign up." });
         }
@@ -62,7 +61,7 @@ export const login = async (req, res) => {
             return res.status(401).json({ message: "Incorrect password" });
         }
 
-        return res.status(200).json({ message: "Logged in successfully" });
+        return res.status(200).json({ message: "Login successful", username: existingUser.username });
     } catch (error) {
         console.error("Error occurred during login:", error);
         return res.status(500).json({ message: "Internal server error" });

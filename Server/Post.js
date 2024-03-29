@@ -8,6 +8,7 @@ const PostSchema = new mongoose.Schema(
             ref: 'User',
             required: true
         },
+        
         postuser: {
             type: String 
         },
@@ -21,18 +22,12 @@ const PostSchema = new mongoose.Schema(
             type: Number,
             default: 0
         },
-        liked:{
-            type:Boolean,
-            default:false
-        },
+        
         dislikes: {
             type: Number,
             default: 0
         },
-        disliked:{
-            type:Boolean,
-            default:false
-        },
+        
         comments: {
             type: [String], 
             default: []
