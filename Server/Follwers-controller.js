@@ -77,3 +77,48 @@ export const acceptFriendRequest = async (req, res) => {
         return res.status(500).json({ message: "Internal server error" });
     }
 };
+
+export const getFollowersList = async (req, res) => {
+    const { user_id } = req.params;
+
+    try {
+        const user = await User.findById(user_id);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        const followers = await User.find({ _id: { $in: user.followers } }, { _id: 1, username: 1 });
+
+        const followerList = followers.map(follower => ({
+            user_id: follower._id,
+            username: follower.username
+        }));
+
+        return res.status(200).json({ followers: followerList });
+    } catch (error) {
+        console.error("Error occurred while fetching followers:", error);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+
+
+export const getFollowingList = async (req, res) => {
+    const { user_id } = req.params;
+
+    try {
+        const user = await User.findById(user_id);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        const following = await User.find({ _id: { $in: user.following } }, { username: 1 });
+
+        return res.status(200).json({ following: following.map(user => user.username) });
+    } catch (error) {
+        console.error("Error occurred while fetching following:", error);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+};

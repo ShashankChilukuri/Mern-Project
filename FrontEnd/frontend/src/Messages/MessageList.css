@@ -4,51 +4,48 @@
 }
 
 .message-list-heading {
-  margin-bottom: 10px;
+  font-size: 18px;
 }
 
 .message-list-container {
   list-style: none;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap; /* Allow items to wrap onto multiple lines */
-  width: 100%; /* Ensure the container takes up the full width */
 }
 
 .message-item {
-  width: fit-content; /* Set the width to fit the content */
-  margin-right: 10px; /* Add space between messages */
-  margin-bottom: 10px; /* Add space between rows */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
 .sender-message {
-  align-self: flex-end;
-  margin-left: auto;
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 10px;
-  padding: 5px;
+  background-color: #e6f2ff;
 }
 
 .receiver-message {
-  align-self: flex-start;
-  background-color: #f5f5f5;
-  border-radius: 10px;
-  padding: 5px;
+  background-color: #f0f0f0;
 }
 
-.message-sender {
-  font-weight: bold;
-  margin-right: 5px;
+/* MainMessage.css */
+.followers-list {
+  margin-top: 20px;
 }
 
-.message-content {
-  padding: 5px;
-  max-width: fit-content;
+.followers-list h2 {
+  font-size: 18px;
 }
 
-.message-timestamp {
-  font-size: 0.8em;
-  color: #999;
-  margin-top: 5px; /* Add space between message content and timestamp */
+.followers-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.followers-list li {
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.followers-list li:hover {
+  background-color: #f0f0f0;
 }

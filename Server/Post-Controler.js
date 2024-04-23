@@ -12,11 +12,10 @@ export const getAllPosts=async (req,res)=>{
         return res.status(500).json({ message: 'Internal server error' });
     }
 };
-
-export const getByusername = async (req, res) => {
-    const { username } = req.params;
+export const getByuserid = async (req, res) => {
+    const { user_id } = req.params;
     try {
-        const user = await User.findOne({ username });
+        const user = await User.findById(user_id);
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });
@@ -30,18 +29,19 @@ export const getByusername = async (req, res) => {
         return res.status(500).json({ message: "Internal server error" });
     }
 };
+
+
 export const addpost = async (req, res) => {
-    const { username, image, caption } = req.body;
+    const { user_id, image, caption } = req.body;
     try {
-        console.log("Received Data Of post", req.body);
-        let existingUser = await User.findOne({ username });
+        let existingUser = await User.findById(user_id);
         if (!existingUser) {
-            return res.status(400).json({ message: "No user exists with the provided username" });
+            return res.status(400).json({ message: "No user exists with the provided user_id" });
         } 
 
         const newPost = new Post({
             user: existingUser._id, 
-            postuser: existingUser.username, // Use postuser instead of name
+            postuser: existingUser.username, 
             image,
             caption
         });

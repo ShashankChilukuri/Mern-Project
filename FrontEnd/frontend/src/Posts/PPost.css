@@ -1,0 +1,63 @@
+.post-container {
+    width: calc(33.33% - 20px); /* Adjust width to occupy one-third of the available space minus margin */
+    margin: 20px 10px; /* Added margin on left and right sides */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 10px;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+  }
+  /* User name */
+  .post-container .username {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px; /* Added margin at the bottom */
+  }
+  
+  /* Image */
+  .post-container .image-container {
+    margin-bottom: 10px; /* Added margin at the bottom */
+  }
+  
+  .post-container img {
+    width: 100%;
+    height: auto; /* Ensure image maintains aspect ratio */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  /* Like and Dislike counters */
+  .post-container .interaction {
+    display: flex; /* Aligns like, dislike, and comments horizontally */
+    align-items: center; /* Centers items vertically */
+    justify-content: space-between; /* Distributes items evenly */
+    margin-top: 10px; /* Added margin at the top */
+  }
+  
+  /* Like and Dislike buttons */
+  .post-container .interaction span {
+    cursor: pointer;
+  }
+  
+  /* Comments button */
+  .post-container .interaction button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: #385185; /* Instagram blue */
+  }
+  
+  /* Error message */
+  .error-message {
+    color: red;
+  }
+  
+  /* Center container */
+  .center-container {
+    display: flex;
+    justify-content: center;
+  }
+  

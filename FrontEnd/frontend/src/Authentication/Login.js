@@ -1,4 +1,3 @@
-// Login.js
 import React, { useState } from 'react';
 import './Login.css';
 import axios from 'axios';
@@ -21,8 +20,9 @@ function Login({ setAuthenticated }) {
             const data = response.data;
             setMessage(data.message);
             let name = response.data.username;
-            setAuthenticated(true); // Set authentication status to true
-            navigate(`/home/${name}`);
+            let id = response.data.user_id;
+            setAuthenticated(true); 
+            navigate(`/home/${name}/${id}`);
         } catch (error) {
             if (error.response && error.response.data) {
                 const data = error.response.data;

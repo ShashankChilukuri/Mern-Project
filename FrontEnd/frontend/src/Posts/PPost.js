@@ -4,7 +4,7 @@ import Comment from './Comment';
 import axios from 'axios';
 import './Post.css';
 
-const Post = ({ post }) => {
+const PPost = ({ post }) => {
   const [like, setLike] = useState(post.likes);
   const [dislike, setDislike] = useState(post.dislikes);
   const [showComment, setShowComment] = useState(false);
@@ -39,9 +39,6 @@ const Post = ({ post }) => {
 
   return (
     <div className="post-container">
-      <div className="center-container">
-        <p className="username">{post.postuser}</p>
-      </div>
       <div className="image-container">
         <img src={post.image} alt={post.caption} />
       </div>
@@ -57,4 +54,4 @@ const Post = ({ post }) => {
   );
 };
 
-export default Post;
+export default PPost;

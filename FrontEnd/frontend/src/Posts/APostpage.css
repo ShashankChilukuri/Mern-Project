@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar-container {
+    flex: 1; 
+  }
+  
+  .add-post-container {
+    flex: 2; 
+  }
+  

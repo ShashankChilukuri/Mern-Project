@@ -61,10 +61,44 @@ export const login = async (req, res) => {
             return res.status(401).json({ message: "Incorrect password" });
         }
 
-        return res.status(200).json({ message: "Login successful", username: existingUser.username });
+        return res.status(200).json({ message: "Login successful", username: existingUser.username ,user_id:existingUser.id});
     } catch (error) {
         console.error("Error occurred during login:", error);
         return res.status(500).json({ message: "Internal server error" });
     }
 };
+export const getprofile = async (req, res) => {
+    const { user_id } = req.params;
+    try {
+        const user = await User.findById(user_id);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        return res.status(200).json({ message: "User found successfully", user });
+    } catch (error) {
+        console.error("Error occurred during finding user:", error);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+};
 
+export const updateProfile = async (req, res) => {
+    const { user_id } = req.params;
+    const { dob, bio } = req.body;
+    try {
+        let user = await User.findByIdAndUpdate(
+            user_id,
+            { dob, bio },
+            { new: true } // Return the updated document
+        );
+        // Handle profile image update if needed
+        // Note: You may need to handle profile image upload separately
+        if (req.file) {
+            user.profileImage = req.file.path; // Assuming you're storing profile images locally
+            await user.save();
+        }
+        return res.status(200).json({ message: "Profile updated successfully", user });
+    } catch (error) {
+        console.error("Error occurred during profile update:", error);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+};

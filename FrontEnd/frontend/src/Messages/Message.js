@@ -1,15 +1,15 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Message.css'; 
-const Message = ({ userId }) => {
+import './Message.css';
+
+const Message = ({ userId, selectedUser, selectedUserId }) => {
   const [content, setContent] = useState('');
 
   const sendMessage = async () => {
     try {
-      await axios.post(`http://localhost:3001/messages`, {
+      await axios.post(`http://localhost:3001/sendmessages`, {
         sender: userId,
-        recipient: '65f140f0a0e2de0f03e2a828',
+        recipient: selectedUserId,
         content: content
       });
       setContent('');
