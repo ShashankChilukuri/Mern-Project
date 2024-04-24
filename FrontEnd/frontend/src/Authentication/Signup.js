@@ -75,8 +75,8 @@ return (
                 </select>
                 <p></p>
                 <button type='submit' onClick={handleSubmit}>Signup</button>
-                <p>{message}</p>
-                <p>Already have an account? <a href="/">Login</a></p>
+                <p style={{ color: '#008000' }}>{message}</p>
+                <p style={{ color: '#FF0000' }}>Already have an account? <a href="/">Login</a></p>
             </div>
         </div>
     );

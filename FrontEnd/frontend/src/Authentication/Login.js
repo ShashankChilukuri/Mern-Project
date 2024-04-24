@@ -49,8 +49,8 @@ function Login({ setAuthenticated }) {
                 <label>Password</label>
                 <input type='password' placeholder='Enter Password' value={password} onChange={handlePasswordChange} />
                 <button type='submit' onClick={handleSubmit}>Login</button>
-                <p>{message}</p>
-                <p>Don't have an account? <a href="/signup">Sign up</a></p>
+                <p style={{ color:'#008000' }}>{message}</p> 
+                <p style={{ color: '#FF0000' }}>Don't have an account? <a href="/signup">Sign up</a></p>
             </div>
         </div>
     );

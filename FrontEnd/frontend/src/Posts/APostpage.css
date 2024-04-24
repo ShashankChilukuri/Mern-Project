@@ -1,13 +1,16 @@
 .container {
     display: flex;
     height: 100vh;
+    background-color:black ;
   }
   
-  .sidebar-container {
+  /* .sidebar-container {
     flex: 1; 
-  }
+    
+  } */
   
   .add-post-container {
     flex: 2; 
+    margin-left: 25%;
   }
   

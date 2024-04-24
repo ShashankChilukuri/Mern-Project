@@ -9,9 +9,9 @@ const AddPostPage = () => {
 
   return (
     <div className="container">
-      <div className="sidebar-container">
+     
         <Sidebar user_id={user_id} />
-      </div>
+      
       <div className="add-post-container">
         <AddPost user_id={user_id} />
       </div>

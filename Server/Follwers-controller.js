@@ -61,11 +61,11 @@ export const acceptFriendRequest = async (req, res) => {
             return res.status(404).json({ message: "Friend request not found or not pending" });
         }
 
-        // Update the friend request status to 'accepted'
+       
         request.status = 'accepted';
         await request.save();
 
-        // Update followers and following lists for both users
+        
         const [receiver, sender] = await Promise.all([
             User.findByIdAndUpdate(request.receiverId, { $addToSet: { followers: request.senderId }, $inc: { followerscount: 1 } }),
             User.findByIdAndUpdate(request.senderId, { $addToSet: { following: request.receiverId }, $inc: { followingcount: 1 } })

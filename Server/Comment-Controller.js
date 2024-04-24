@@ -44,7 +44,7 @@ export const deletecomment = async (req, res) => {
       console.log("postId:", postId);
       console.log("comment:", comment);
   
-      // Ensure postId is a valid ObjectId
+      
       if (!mongoose.Types.ObjectId.isValid(postId)) {
         return res.status(400).json({ message: "Invalid postId" });
       }
@@ -54,7 +54,7 @@ export const deletecomment = async (req, res) => {
         return res.status(404).json({ message: "Post not found" });
       }
       
-      // Find the index of the comment to remove
+     
       const commentIndex = post.comments.indexOf(comment);
       if (commentIndex === -1) {
         return res.status(404).json({ message: "Comment not found in post" });

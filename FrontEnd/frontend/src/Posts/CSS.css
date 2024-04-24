@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* .sidebar-container {
+    flex: 1;
+    background-color: #f0f0f0; 
+    /*padding: 20px; 
+  } */
+  
+  .main-message-container {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .followers-list {
+    background-color: #fff; 
+    padding: 20px; 
+    border-right: 1px solid #ccc;
+  }
+  
+  .followers-list h2 {
+    margin-bottom: 10px; 
+  }
+  
+  .followers-list ul {
+    list-style: none; 
+    padding: 0;
+  }
+  
+  .followers-list li {
+    cursor: pointer;
+    padding: 5px 0; 
+  }
+  
+  .followers-list li:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .conversation-container {
+    flex: 1;
+    padding: 20px;
+  }
+  

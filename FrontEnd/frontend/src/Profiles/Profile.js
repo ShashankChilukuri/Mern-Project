@@ -68,7 +68,7 @@ function Profile() {
             ...prevUser,
             dob: updatedData.dob,
             bio: updatedData.bio
-            // You might also want to update other user details if needed
+           
         }));
         setIsEditing(false);
     };
@@ -76,7 +76,7 @@ function Profile() {
     return (
         <div className="container">
         <div className="sidebar-container">
-            <Sidebar user_id={user_id} />
+        <Sidebar user_id={String(user_id)} />
         </div>
         <div className="add-post-container">
         <div className="profile-container">
@@ -89,10 +89,10 @@ function Profile() {
                     <div className="profile-details">
                         {user && (
                             <>
-                                <h2>{user.username}</h2>
-                                <p>Email: {user.email}</p>
-                                <p>Date of Birth: {user.dob}</p>
-                                <p>Gender: {user.gender}</p>
+                                <h2 style={{ color: 'white' }}>{user.username}</h2>
+                                <p style={{ color: 'white' }}>Email: {user.email}</p>
+                                <p style={{ color: 'white' }}>Date of Birth: {user.dob}</p>
+                                <p style={{ color: 'white' }}>Gender: {user.gender}</p>
                             </>
                         )}
                         <button className="edit-button" onClick={handleEditClick}>Edit</button>
@@ -102,7 +102,7 @@ function Profile() {
 
             <div className="follow-container">
                 <div className="followers">
-                    <h3>Followers: {followers.length}</h3>
+                    <h1 style={{ color: 'black' }}>Followers: {followers.length}</h1>
                     <ul>
                         {followers.map((follower, index) => (
                             <li key={index}>{follower}</li>
@@ -110,7 +110,7 @@ function Profile() {
                     </ul>
                 </div>
                 <div className="following">
-                    <h3>Following: {following.length}</h3>
+                    <h1 style={{ color: 'Black' }}>Following: {following.length}</h1>
                     <ul>
                         {following.map((followedUser, index) => (
                             <li key={index}>{followedUser}</li>
@@ -120,7 +120,7 @@ function Profile() {
             </div>
 
             <div className="posts-container">
-                <h1>My Posts</h1>
+                <h1 style={{ color: 'white' }}>My Posts</h1>
                 <div className="post-grid">
                     {posts.map(post => (
                         <PPost key={post._id} post={post} />

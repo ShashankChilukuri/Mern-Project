@@ -26,7 +26,7 @@ const MessagePage = () => {
         content: newMessage,
       });
       setNewMessage('');
-      fetchMessages(); // Refresh messages after sending
+      fetchMessages(); 
     } catch (error) {
       console.error('Failed to send message:', error);
     }

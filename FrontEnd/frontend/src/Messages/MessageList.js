@@ -12,7 +12,7 @@ const MessageList = ({ userId, selectedUser, selectedUserId }) => {
           const response = await axios.get(`http://localhost:3001/messages/${userId}`, selectedUserId);
           setMessages(response.data);
         } else {
-          // Clear messages when no user is selected
+          
           setMessages([]);
         }
       } catch (error) {

@@ -88,12 +88,11 @@ export const updateProfile = async (req, res) => {
         let user = await User.findByIdAndUpdate(
             user_id,
             { dob, bio },
-            { new: true } // Return the updated document
+            { new: true } 
         );
-        // Handle profile image update if needed
-        // Note: You may need to handle profile image upload separately
+        
         if (req.file) {
-            user.profileImage = req.file.path; // Assuming you're storing profile images locally
+            user.profileImage = req.file.path; 
             await user.save();
         }
         return res.status(200).json({ message: "Profile updated successfully", user });

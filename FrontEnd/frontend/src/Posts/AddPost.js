@@ -43,7 +43,7 @@ const AddPost = ({ user_id }) => {
     };
 
     return (
-        <div className="w-full md:w-1/2 p-4"> {/* Adjust width to fit container */}
+        <div className="w-full md:w-1/2 p-4"> 
             <div className="p-4 bg-white rounded shadow-md">
                 <h2 className="text-xl font-semibold mb-4">Add a Post</h2>
                 <form onSubmit={handleSubmit}>
@@ -71,7 +71,7 @@ const AddPost = ({ user_id }) => {
                     </div>
                     <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Post</button>
                 </form>
-                {message && <p className="mt-4">{message}</p>}
+                {message && <p style={{ color: '#008000' }} className="mt-4">{message}</p>}
             </div>
         </div>
     );

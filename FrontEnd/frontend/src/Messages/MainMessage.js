@@ -4,6 +4,8 @@ import MessageList from './MessageList';
 import Message from './Message';
 import './Message.css';
 import { useParams } from 'react-router-dom';
+import Sidebar from '../Profiles/SideNavBar';
+import './MCSS.css';
 
 const MainMessage = () => {
   const [followers, setFollowers] = useState([]);
@@ -34,6 +36,10 @@ const MainMessage = () => {
   };
 
   return (
+    <div className="container">
+      <div className="sidebar-container">
+        <Sidebar user_id={user_id} />
+      </div>
     <div className="main-message-container">
       <div className="followers-list">
         <h2>Friends</h2>
@@ -55,6 +61,7 @@ const MainMessage = () => {
           <p>Select a user to start conversation</p>
         )}
       </div>
+    </div>
     </div>
   );
 };

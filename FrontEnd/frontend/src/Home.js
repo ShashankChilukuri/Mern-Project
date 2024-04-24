@@ -11,7 +11,7 @@ const Home = () => {
   const { user_id } = useParams();
 
   return (
-    <div className="flex">
+    <div className="flex" style={{ backgroundColor: 'black' }}>
       
       <Sidebar user_id={user_id} />
 
